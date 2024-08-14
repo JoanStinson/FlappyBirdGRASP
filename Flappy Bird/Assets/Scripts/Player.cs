@@ -6,8 +6,8 @@ namespace JGM.Game
     {
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) ||
-                Input.GetKeyDown(KeyCode.Space))
+            var playerInput = new PlayerInputBuilder().GetPlayerInput();
+            if (playerInput.Pressed())
             {
                 OnTap();
             }
