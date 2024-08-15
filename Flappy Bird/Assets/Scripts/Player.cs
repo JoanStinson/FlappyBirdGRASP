@@ -6,12 +6,20 @@ namespace JGM.Game
     public class Player : MonoBehaviour
     {
         public event Action OnPlayerDie;
+        public bool IsDead => m_dead;
 
         [SerializeField] private Rigidbody2D m_rigidbody2D;
         [SerializeField] private float m_flapStrength = 5f;
 
         private bool m_shouldFlap;
         private bool m_dead;
+        private Vector3 m_startPosition;
+
+
+        private void Start()
+        {
+            m_startPosition = transform.position;   
+        }
 
         private void Update()
         {
@@ -52,6 +60,12 @@ namespace JGM.Game
             OnPlayerDie?.Invoke();
             m_dead = true;
             m_shouldFlap = false;
+        }
+
+        public void Restart()
+        {
+            transform.position = m_startPosition;
+            m_dead = false;
         }
     }
 }

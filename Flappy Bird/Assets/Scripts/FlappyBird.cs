@@ -11,18 +11,27 @@ namespace JGM.Game
 
         private void Start()
         {
-            m_pipeSpawner.OnPlayerPassedPipe += AddScore;
-            m_player.OnPlayerDie += ShowGameOver;
+            m_pipeSpawner.OnPlayerPassedPipe += OnPlayerPassedPipe;
+            m_player.OnPlayerDie += OnPlayerDie;
+            m_gameOver.OnRestartButtonClicked += OnRestartButtonClicked;
         }
 
-        private void AddScore()
+        private void OnPlayerPassedPipe()
         {
             m_score.AddScore();
         }
 
-        private void ShowGameOver()
+        private void OnPlayerDie()
         {
             m_gameOver.gameObject.SetActive(true);
+        }
+
+        private void OnRestartButtonClicked()
+        {
+            m_pipeSpawner.Restart();
+            m_score.Restart();
+            m_player.Restart();
+            m_gameOver.gameObject.SetActive(false);
         }
     }
 }

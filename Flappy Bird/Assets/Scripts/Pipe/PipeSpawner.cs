@@ -11,6 +11,8 @@ namespace JGM.Game
 
         [SerializeField] private Transform m_pipesParent;
         [SerializeField] private Pipe m_pipePrefab;
+        
+        private Pipe m_pipeInstance;
 
         private void Start()
         {
@@ -19,9 +21,9 @@ namespace JGM.Game
 
         private void SpawnPipes()
         {
-            var pipeInstance = GameObject.Instantiate(m_pipePrefab, m_pipesParent, false);
-            pipeInstance.Initialize(this);
-            Return(pipeInstance);
+            m_pipeInstance = GameObject.Instantiate(m_pipePrefab, m_pipesParent, false);
+            m_pipeInstance.Initialize(this);
+            Return(m_pipeInstance);
         }
 
         public void Return(Pipe pipe)
@@ -32,6 +34,11 @@ namespace JGM.Game
         public void PlayerPassedPipe(Pipe pipe)
         {
             OnPlayerPassedPipe?.Invoke();
+        }
+
+        public void Restart()
+        {
+            Return(m_pipeInstance);
         }
     }
 }
