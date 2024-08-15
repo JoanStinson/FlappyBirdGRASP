@@ -86,7 +86,8 @@ namespace JGM.Editor
                 {
                     flexDirection = FlexDirection.Row,
                     alignItems = Align.FlexStart,
-                    justifyContent = Justify.FlexStart
+                    justifyContent = Justify.FlexStart,
+                    marginLeft = -1
                 }
             };
 
@@ -115,9 +116,9 @@ namespace JGM.Editor
                 }
             }
 
-            foreach (var attr in allAttributes.OrderByDescending(x => x.Value.order))
+            foreach (var attr in allAttributes.OrderByDescending(x => x.Value.Order))
             {
-                parent.Add(CreateToolbarButton(attr.Value.iconName, () => attr.Key.Invoke(null, null), attr.Value.tooltip));
+                parent.Add(CreateToolbarButton(attr.Value.IconName, () => attr.Key.Invoke(null, null), attr.Value.Tooltip));
             }
         }
 
