@@ -10,7 +10,8 @@ namespace JGM.Game
 
         [SerializeField] private Rigidbody2D m_rigidbody2D;
         [SerializeField] private float m_flapStrength = 5f;
-        [SerializeField] private float m_pitchAngle = 10f;
+        [SerializeField] private float m_pitchAngle = 12f;
+        [SerializeField] private float m_rotationSpeed = 6f;
 
         private bool m_shouldFlap;
         private bool m_dead;
@@ -54,8 +55,9 @@ namespace JGM.Game
 
         private void Rotate()
         {
-            float newRotation = (m_rigidbody2D.velocity.y > 0) ? m_pitchAngle : -m_pitchAngle;
-            transform.rotation = Quaternion.Euler(0, 0, newRotation);
+            float targetAngle = (m_rigidbody2D.velocity.y > 0) ? m_pitchAngle : -m_pitchAngle;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_rotationSpeed * Time.deltaTime);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

@@ -530,7 +530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rigidbody2D: {fileID: 300520371}
   m_flapStrength: 5
-  m_pitchAngle: 5
+  m_pitchAngle: 12
+  m_rotationSpeed: 6
 --- !u!50 &300520371
 Rigidbody2D:
   serializedVersion: 4
