@@ -10,6 +10,7 @@ namespace JGM.Game
 
         [SerializeField] private Rigidbody2D m_rigidbody2D;
         [SerializeField] private float m_flapStrength = 5f;
+        [SerializeField] private float m_pitchAngle = 10f;
 
         private bool m_shouldFlap;
         private bool m_dead;
@@ -17,7 +18,7 @@ namespace JGM.Game
 
         private void Start()
         {
-            m_startPosition = transform.position;   
+            m_startPosition = transform.position;
         }
 
         private void Update()
@@ -41,12 +42,20 @@ namespace JGM.Game
                 Flap();
                 m_shouldFlap = false;
             }
+
+            Rotate();
         }
 
         private void Flap()
         {
             m_rigidbody2D.velocity = Vector2.zero;
             m_rigidbody2D.AddForce(Vector2.up * m_flapStrength, ForceMode2D.Impulse);
+        }
+
+        private void Rotate()
+        {
+            float newRotation = (m_rigidbody2D.velocity.y > 0) ? m_pitchAngle : -m_pitchAngle;
+            transform.rotation = Quaternion.Euler(0, 0, newRotation);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -64,6 +73,7 @@ namespace JGM.Game
         public void Restart()
         {
             transform.position = m_startPosition;
+            transform.rotation = Quaternion.identity;
             m_dead = false;
         }
     }
