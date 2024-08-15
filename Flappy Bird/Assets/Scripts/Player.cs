@@ -15,7 +15,6 @@ namespace JGM.Game
         private bool m_dead;
         private Vector3 m_startPosition;
 
-
         private void Start()
         {
             m_startPosition = transform.position;   
