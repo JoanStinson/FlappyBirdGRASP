@@ -13,13 +13,15 @@ namespace JGM.Game
         [SerializeField] private float m_pitchAngle = 12f;
         [SerializeField] private float m_rotationSpeed = 6f;
 
-        private bool m_shouldFlap;
-        private bool m_dead;
         private Vector3 m_startPosition;
+        private bool m_shouldFlap;
+        private bool m_canFlap;
+        private bool m_dead;
 
         private void Start()
         {
             m_startPosition = transform.position;
+            m_rigidbody2D.isKinematic = true;
         }
 
         private void Update()
@@ -33,11 +35,18 @@ namespace JGM.Game
             if (playerInput.Pressed())
             {
                 m_shouldFlap = true;
+                m_canFlap = true;
+                m_rigidbody2D.isKinematic = false;
             }
         }
 
         private void FixedUpdate()
         {
+            if (!m_canFlap)
+            {
+                return;
+            }
+
             if (m_shouldFlap)
             {
                 Flap();
@@ -77,6 +86,8 @@ namespace JGM.Game
             transform.position = m_startPosition;
             transform.rotation = Quaternion.identity;
             m_dead = false;
+            m_canFlap = false;
+            m_rigidbody2D.isKinematic = true;
         }
     }
 }
