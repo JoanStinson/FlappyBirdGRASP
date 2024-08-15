@@ -1,16 +1,25 @@
+using System;
 using UnityEngine;
 
 namespace JGM.Game
 {
     public class Player : MonoBehaviour
     {
+        public event Action OnPlayerDie;
+
         [SerializeField] private Rigidbody2D m_rigidbody2D;
         [SerializeField] private float m_flapStrength = 5f;
 
         private bool m_shouldFlap;
+        private bool m_dead;
 
         private void Update()
         {
+            if (m_dead)
+            {
+                return;
+            }
+
             var playerInput = new PlayerInputBuilder().GetPlayerInput();
             if (playerInput.Pressed())
             {
@@ -31,6 +40,18 @@ namespace JGM.Game
         {
             m_rigidbody2D.velocity = Vector2.zero;
             m_rigidbody2D.AddForce(Vector2.up * m_flapStrength, ForceMode2D.Impulse);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!collision.collider.CompareTag("Enemy"))
+            {
+                return;
+            }
+
+            OnPlayerDie?.Invoke();
+            m_dead = true;
+            m_shouldFlap = false;
         }
     }
 }

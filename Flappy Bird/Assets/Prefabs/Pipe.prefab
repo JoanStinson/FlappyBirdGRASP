@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 643739163654618276}
   m_Layer: 0
   m_Name: TopPart
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 7625422633917152668}
   m_Layer: 0
   m_Name: BottomPart
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
