@@ -7,7 +7,7 @@ namespace JGM.Editor
     {
         private static string m_mainScenePath = "Assets/Scenes/MainScene.unity";
 
-        [ToolbarButton(IconName = "Record Off", Tooltip = "Open Main Scene", Order = 100)]
+        [ToolbarButton(IconName = "SceneAsset Icon", Tooltip = "Open Main Scene", Order = 100)]
         public static void OnButtonClick()
         {
             if (System.IO.File.Exists(m_mainScenePath))
