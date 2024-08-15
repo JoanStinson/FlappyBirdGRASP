@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace JGM.Game
 {
@@ -20,6 +19,16 @@ namespace JGM.Game
             {
                 m_pipeSpawner.Return(this);
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!collision.TryGetComponent<Player>(out var player))
+            {
+                return;
+            }
+
+            m_pipeSpawner.PlayerPassedPipe(this);
         }
     }
 }

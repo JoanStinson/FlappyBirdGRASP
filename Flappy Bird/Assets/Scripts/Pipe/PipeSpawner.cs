@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace JGM.Game
 {
     public class PipeSpawner : MonoBehaviour
     {
+        public event Action OnPlayerPassedPipe;
         [field: SerializeField] public Transform LeftScreenLimit { get; private set; }
         [field: SerializeField] public Transform SpawnPosition { get; private set; }
 
@@ -25,6 +27,11 @@ namespace JGM.Game
         public void Return(Pipe pipe)
         {
             pipe.transform.position = SpawnPosition.position;
+        }
+
+        public void PlayerPassedPipe(Pipe pipe)
+        {
+            OnPlayerPassedPipe?.Invoke();
         }
     }
 }
