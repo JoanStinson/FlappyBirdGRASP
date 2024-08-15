@@ -5,7 +5,7 @@ namespace JGM.Editor
 {
     public static class OpenEditorSettingsButton
     {
-        [ToolbarButton(IconName = "Settings", Tooltip = "Open Settings")]
+        [ToolbarButton(IconName = "Settings", Tooltip = "Open Settings", Order = 50)]
         public static void OnButtonClick()
         {
             var a = new GenericMenu();
