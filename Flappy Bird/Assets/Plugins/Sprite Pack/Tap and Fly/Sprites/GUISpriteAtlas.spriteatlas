@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GUISpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c456ef2788e8e487da0e2fafa4501c37, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 7064812098a644ebfbca36863c3e4ab7: 21300000
+    - 37da3101d74f045d1a246336168fc3c0: 21300000
+    - 34c8f6831cfa14779bd8c97bb640d044: 21300000
+    - 357e63c3be8f146e9abe32abc854a62a: 21300000
+    - 52489874b78c8447286e2f61063c6f49: 21300000
+    - 58ac8f740a7bf45edbdd0aaf47847b03: 21300000
+    - 9ed54c842d8cd45b68915a1e890adec8: 21300000
+    - c2dd35b438342425a90040332d37fe4f: 21300000
+    - d97ab0d572c7349969b822560a9ae70d: 21300000
+    - dd0cdf0647c1c4c349242b6963b4a8be: 21300000
+    - 47a0c7f6050ce416e88f1a9ca11ebe37: 21300000
+    - d0bcc4c8752544b5f930cc1e5b1af46d: 21300000
+    - 768843c912ef04f84b6df5af438bbfc4: 21300000
+    - 19f8e7e9938114a3a9219c7f3b10aff7: 21300000
+    - 3b85165a4b6bb41e59a3894e763eaf96: 21300000
+    - e372381e8b4d14e3e81ab4eaabddbef0: 21300000
+    - 2787875e172594236821f59a68171fab: 21300000
+    - 652e3eeea9e934c11a685d200fd8b786: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7064812098a644ebfbca36863c3e4ab7, type: 3}
+  - {fileID: 21300000, guid: 37da3101d74f045d1a246336168fc3c0, type: 3}
+  - {fileID: 21300000, guid: 34c8f6831cfa14779bd8c97bb640d044, type: 3}
+  - {fileID: 21300000, guid: 357e63c3be8f146e9abe32abc854a62a, type: 3}
+  - {fileID: 21300000, guid: 52489874b78c8447286e2f61063c6f49, type: 3}
+  - {fileID: 21300000, guid: 58ac8f740a7bf45edbdd0aaf47847b03, type: 3}
+  - {fileID: 21300000, guid: 9ed54c842d8cd45b68915a1e890adec8, type: 3}
+  - {fileID: 21300000, guid: c2dd35b438342425a90040332d37fe4f, type: 3}
+  - {fileID: 21300000, guid: d97ab0d572c7349969b822560a9ae70d, type: 3}
+  - {fileID: 21300000, guid: dd0cdf0647c1c4c349242b6963b4a8be, type: 3}
+  - {fileID: 21300000, guid: 47a0c7f6050ce416e88f1a9ca11ebe37, type: 3}
+  - {fileID: 21300000, guid: d0bcc4c8752544b5f930cc1e5b1af46d, type: 3}
+  - {fileID: 21300000, guid: 768843c912ef04f84b6df5af438bbfc4, type: 3}
+  - {fileID: 21300000, guid: 19f8e7e9938114a3a9219c7f3b10aff7, type: 3}
+  - {fileID: 21300000, guid: 3b85165a4b6bb41e59a3894e763eaf96, type: 3}
+  - {fileID: 21300000, guid: e372381e8b4d14e3e81ab4eaabddbef0, type: 3}
+  - {fileID: 21300000, guid: 2787875e172594236821f59a68171fab, type: 3}
+  - {fileID: 21300000, guid: 652e3eeea9e934c11a685d200fd8b786, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - new
+  - button_back
+  - medal_03
+  - button_removeads
+  - medal_01
+  - tutorial_02
+  - text_getReady
+  - title
+  - text_highScore
+  - button_selectPlayer
+  - text_playScore
+  - text_gameOver
+  - button_rank
+  - medal_02
+  - button_play
+  - window_score
+  - button_rate
+  - tutorial_01
+  m_RenderDataMap: {}
+  m_Tag: GUISpriteAtlas
+  m_IsVariant: 0

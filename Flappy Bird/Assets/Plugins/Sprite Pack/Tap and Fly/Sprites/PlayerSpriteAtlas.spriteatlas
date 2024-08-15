@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayerSpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: fabaaf1d8e5d14e5daac2d79d4b62eea, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - d52ef9e0b035c4099932038ef280c19e: 21300000
+    - 5f6acf41e32064ce9a53830d7851e23c: 21300000
+    - 91eeae52c43d242b6a4505da7a368bc8: 21300000
+    - 8fac7894279e44facb1b5d346a185c0f: 21300000
+    - 214905f5174f042bcb275821987b81c6: 21300000
+    - a941a477ecc9e49f8bb98067cd3badbd: 21300000
+    - cd9143090423d45dbb80653982e6c3b8: 21300000
+    - 2d960f7c818834a428fed4e198e98c4f: 21300000
+    - d4ce666dc96b048908651438caf741c5: 21300000
+    - 4b55b0ef15bd740558c9edcea4ce6e2c: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: d52ef9e0b035c4099932038ef280c19e, type: 3}
+  - {fileID: 21300000, guid: 5f6acf41e32064ce9a53830d7851e23c, type: 3}
+  - {fileID: 21300000, guid: 91eeae52c43d242b6a4505da7a368bc8, type: 3}
+  - {fileID: 21300000, guid: 8fac7894279e44facb1b5d346a185c0f, type: 3}
+  - {fileID: 21300000, guid: 214905f5174f042bcb275821987b81c6, type: 3}
+  - {fileID: 21300000, guid: a941a477ecc9e49f8bb98067cd3badbd, type: 3}
+  - {fileID: 21300000, guid: cd9143090423d45dbb80653982e6c3b8, type: 3}
+  - {fileID: 21300000, guid: 2d960f7c818834a428fed4e198e98c4f, type: 3}
+  - {fileID: 21300000, guid: d4ce666dc96b048908651438caf741c5, type: 3}
+  - {fileID: 21300000, guid: 4b55b0ef15bd740558c9edcea4ce6e2c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - player_idle_f04
+  - player_idle_f02
+  - hitEffect
+  - player_idle_f03
+  - player_fly_f01
+  - player_ko_f01
+  - player_idle_f01
+  - player_fly_f02
+  - player_hurt_f01
+  - player_fly_f03
+  m_RenderDataMap: {}
+  m_Tag: PlayerSpriteAtlas
+  m_IsVariant: 0
