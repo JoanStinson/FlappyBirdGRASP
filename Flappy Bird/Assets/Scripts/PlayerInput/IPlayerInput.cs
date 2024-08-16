@@ -2,6 +2,6 @@
 {
     public interface IPlayerInput
     {
-        bool Pressed();
+        bool Received();
     }
 }

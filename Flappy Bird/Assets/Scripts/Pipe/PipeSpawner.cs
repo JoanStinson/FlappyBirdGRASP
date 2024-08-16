@@ -14,12 +14,7 @@ namespace JGM.Game
 
         private Pipe m_pipeInstance;
 
-        private void Start()
-        {
-            SpawnPipes();
-        }
-
-        private void SpawnPipes()
+        public void SpawnPipes()
         {
             m_pipeInstance = GameObject.Instantiate(m_pipePrefab, m_pipesParent, false);
             m_pipeInstance.Initialize(this);

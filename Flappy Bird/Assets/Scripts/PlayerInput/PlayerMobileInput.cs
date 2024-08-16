@@ -4,7 +4,7 @@ namespace JGM.Game
 {
     public class PlayerMobileInput : IPlayerInput
     {
-        public bool Pressed()
+        public bool Received()
         {
             return Input.touchCount > 0 &&
                    Input.GetTouch(0).phase == TouchPhase.Began;

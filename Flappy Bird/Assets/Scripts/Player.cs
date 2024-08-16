@@ -7,6 +7,7 @@ namespace JGM.Game
 {
     public class Player : MonoBehaviour
     {
+        public event Action OnPlayerInputReceived;
         public event Action OnPlayerDie;
         public bool IsDead => m_dead;
 
@@ -39,8 +40,9 @@ namespace JGM.Game
             }
 
             var playerInput = new PlayerInputBuilder().GetPlayerInput();
-            if (playerInput.Pressed())
+            if (playerInput.Received())
             {
+                OnPlayerInputReceived?.Invoke();
                 m_shouldFlap = true;
                 m_canFlap = true;
                 m_rigidbody2D.isKinematic = false;
