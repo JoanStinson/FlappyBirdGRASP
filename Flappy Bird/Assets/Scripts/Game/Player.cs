@@ -1,4 +1,5 @@
 using DG.Tweening;
+using JGM.Engine;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace JGM.Game
         [SerializeField] private Transform m_downHitEffect;
         [SerializeField] private float m_hitEffectDuration = 0.2f;
         [SerializeField] private Camera m_mainCamera;
+        [SerializeField] private CoroutineService m_coroutineService;
 
         private Vector3 m_startPosition;
         private bool m_shouldFlap;
@@ -104,12 +106,12 @@ namespace JGM.Game
 
         public void TriggerRightHitEffect()
         {
-            StartCoroutine(ShowHitEffect(m_rightHitEffect));
+            m_coroutineService.RunCoroutine(ShowHitEffect(m_rightHitEffect));
         }
 
         public void TriggerDownHitEffect()
         {
-            StartCoroutine(ShowHitEffect(m_downHitEffect));
+            m_coroutineService.RunCoroutine(ShowHitEffect(m_downHitEffect));
         }
 
         private IEnumerator ShowHitEffect(Transform hitEffect)

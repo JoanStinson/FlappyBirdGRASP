@@ -540,6 +540,7 @@ MonoBehaviour:
   m_downHitEffect: {fileID: 447169776}
   m_hitEffectDuration: 0.2
   m_mainCamera: {fileID: 519420031}
+  m_coroutineService: {fileID: 938394782}
 --- !u!50 &300520371
 Rigidbody2D:
   serializedVersion: 4
@@ -1282,6 +1283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938394780}
   - component: {fileID: 938394781}
+  - component: {fileID: 938394782}
   m_Layer: 0
   m_Name: FlappyBird
   m_TagString: Untagged
@@ -1322,6 +1324,18 @@ MonoBehaviour:
   m_gameOver: {fileID: 323289646}
   m_infiniteScroller: {fileID: 1521902385}
   m_tutorial: {fileID: 1756103333}
+--- !u!114 &938394782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938394779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325e260cc5dbb3047b4b585999c15102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1213521008
 GameObject:
   m_ObjectHideFlags: 0
