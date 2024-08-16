@@ -1244,6 +1244,7 @@ MonoBehaviour:
   m_score: {fileID: 677162782}
   m_player: {fileID: 300520370}
   m_gameOver: {fileID: 323289646}
+  m_infiniteScroller: {fileID: 1521902385}
 --- !u!1 &1378205727
 GameObject:
   m_ObjectHideFlags: 0

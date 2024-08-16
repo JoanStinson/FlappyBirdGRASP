@@ -8,6 +8,7 @@ namespace JGM.Game
         [SerializeField] private Score m_score;
         [SerializeField] private Player m_player;
         [SerializeField] private GameOver m_gameOver;
+        [SerializeField] private InfiniteScroller m_infiniteScroller;
 
         private void Start()
         {
@@ -23,12 +24,16 @@ namespace JGM.Game
 
         private void OnPlayerDie()
         {
+            m_pipeSpawner.DisableMovement();
+            m_infiniteScroller.enabled = false;
             m_gameOver.gameObject.SetActive(true);
         }
 
         private void OnRestartButtonClicked()
         {
             m_pipeSpawner.Restart();
+            m_pipeSpawner.EnableMovement();
+            m_infiniteScroller.enabled = true;
             m_score.Restart();
             m_player.Restart();
             m_gameOver.gameObject.SetActive(false);

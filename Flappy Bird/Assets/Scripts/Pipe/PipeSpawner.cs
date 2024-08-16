@@ -11,7 +11,7 @@ namespace JGM.Game
 
         [SerializeField] private Transform m_pipesParent;
         [SerializeField] private Pipe m_pipePrefab;
-        
+
         private Pipe m_pipeInstance;
 
         private void Start()
@@ -39,6 +39,16 @@ namespace JGM.Game
         public void Restart()
         {
             Return(m_pipeInstance);
+        }
+
+        public void EnableMovement()
+        {
+            m_pipeInstance.enabled = true;
+        }
+
+        public void DisableMovement()
+        {
+            m_pipeInstance.enabled = false;
         }
     }
 }
