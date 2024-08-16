@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace JGM.Game
@@ -12,6 +13,10 @@ namespace JGM.Game
         [SerializeField] private float m_flapStrength = 5f;
         [SerializeField] private float m_pitchAngle = 12f;
         [SerializeField] private float m_rotationSpeed = 6f;
+        [SerializeField] private Animator m_animator;
+        [SerializeField] private Transform m_rightHitEffect;
+        [SerializeField] private Transform m_downHitEffect;
+        [SerializeField] private float m_hitEffectDuration = 0.2f;
 
         private Vector3 m_startPosition;
         private bool m_shouldFlap;
@@ -71,12 +76,13 @@ namespace JGM.Game
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.collider.CompareTag("Enemy"))
+            if (!collision.collider.CompareTag("Enemy") || m_dead)
             {
                 return;
             }
 
             OnPlayerDie?.Invoke();
+            m_animator.Play("PlayerHurt");
             m_dead = true;
             m_shouldFlap = false;
         }
@@ -85,9 +91,27 @@ namespace JGM.Game
         {
             transform.position = m_startPosition;
             transform.rotation = Quaternion.identity;
+            m_animator.Play("PlayerFly");
             m_dead = false;
             m_canFlap = false;
             m_rigidbody2D.isKinematic = true;
+        }
+
+        public void TriggerRightHitEffect()
+        {
+            StartCoroutine(ShowHitEffect(m_rightHitEffect));
+        }
+
+        public void TriggerDownHitEffect()
+        {
+            StartCoroutine(ShowHitEffect(m_downHitEffect));
+        }
+
+        private IEnumerator ShowHitEffect(Transform hitEffect)
+        {
+            hitEffect.gameObject.SetActive(true);
+            yield return new WaitForSeconds(m_hitEffectDuration);
+            hitEffect.gameObject.SetActive(false);
         }
     }
 }
