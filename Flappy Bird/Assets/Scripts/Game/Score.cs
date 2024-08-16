@@ -5,6 +5,8 @@ namespace JGM.Game
 {
     public class Score : MonoBehaviour
     {
+        public int ScoreTotal => m_score;
+        
         [SerializeField] private TextMeshProUGUI m_scoreText;
 
         private int m_score;

@@ -2,9 +2,9 @@
 
 namespace JGM.Engine
 {
-    public class BasicHapticFeedbackService : IHapticFeedbackService
+    public class HandheldVibrationAdapter : IVibrationService
     {
-        public void TriggerVibration()
+        public void Trigger()
         {
 #if !UNITY_EDITOR
             Handheld.Vibrate();
