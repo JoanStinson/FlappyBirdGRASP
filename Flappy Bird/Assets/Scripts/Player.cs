@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace JGM.Game
         [SerializeField] private Transform m_rightHitEffect;
         [SerializeField] private Transform m_downHitEffect;
         [SerializeField] private float m_hitEffectDuration = 0.2f;
+        [SerializeField] private Camera m_mainCamera;
 
         private Vector3 m_startPosition;
         private bool m_shouldFlap;
@@ -83,6 +85,7 @@ namespace JGM.Game
 
             OnPlayerDie?.Invoke();
             m_animator.Play("PlayerHurt");
+            m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
             m_dead = true;
             m_shouldFlap = false;
         }

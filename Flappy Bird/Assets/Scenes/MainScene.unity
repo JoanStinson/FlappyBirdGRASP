@@ -538,6 +538,7 @@ MonoBehaviour:
   m_rightHitEffect: {fileID: 1213521009}
   m_downHitEffect: {fileID: 447169776}
   m_hitEffectDuration: 0.2
+  m_mainCamera: {fileID: 519420031}
 --- !u!50 &300520371
 Rigidbody2D:
   serializedVersion: 4
