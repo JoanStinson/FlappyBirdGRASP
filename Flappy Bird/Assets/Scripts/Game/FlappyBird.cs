@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JGM.Engine;
 using UnityEngine;
 
 namespace JGM.Game
@@ -42,6 +42,7 @@ namespace JGM.Game
             m_pipeSpawner.DisableMovement();
             m_infiniteScroller.enabled = false;
             m_gameOver.gameObject.SetActive(true);
+            new BasicHapticFeedbackService().TriggerVibration();
         }
 
         private void OnRestartButtonClicked()
