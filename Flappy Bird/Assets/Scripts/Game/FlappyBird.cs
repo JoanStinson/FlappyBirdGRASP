@@ -11,6 +11,7 @@ namespace JGM.Game
         [SerializeField] private GameOver m_gameOver;
         [SerializeField] private InfiniteScroller m_infiniteScroller;
         [SerializeField] private Tutorial m_tutorial;
+        [SerializeField] private AudioService m_audioService;
         
         private PlayerPrefsAdapter m_persistenceService;
         private int m_highScore;
@@ -29,11 +30,14 @@ namespace JGM.Game
 
             m_persistenceService = new PlayerPrefsAdapter();
             m_highScore = m_persistenceService.LoadInt("HighScore");
+
+            m_audioService.PlayMusic("Background Music");
         }
 
         private void OnPlayerPassedPipe()
         {
             m_score.AddScore();
+            m_audioService.PlaySfx("Score");
         }
 
         private void OnPlayerInputReceived()

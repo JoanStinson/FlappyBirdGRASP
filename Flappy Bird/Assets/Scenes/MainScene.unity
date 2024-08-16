@@ -1284,6 +1284,7 @@ GameObject:
   - component: {fileID: 938394780}
   - component: {fileID: 938394781}
   - component: {fileID: 938394782}
+  - component: {fileID: 938394783}
   m_Layer: 0
   m_Name: FlappyBird
   m_TagString: Untagged
@@ -1324,6 +1325,7 @@ MonoBehaviour:
   m_gameOver: {fileID: 323289646}
   m_infiniteScroller: {fileID: 1521902385}
   m_tutorial: {fileID: 1756103333}
+  m_audioService: {fileID: 938394783}
 --- !u!114 &938394782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1336,6 +1338,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325e260cc5dbb3047b4b585999c15102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &938394783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938394779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e876b5f422f7ce4d9f391ea48833631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_musicVolume: 0.3
+  m_audioClips:
+  - {fileID: 8300000, guid: af2ca5569671a459b90f25803b7c7b63, type: 3}
+  - {fileID: 8300000, guid: a1f23edc29534489fb22244ec7f299b1, type: 3}
+  - {fileID: 8300000, guid: d9d88089ad7524578b2ea096abedc7c8, type: 3}
+  - {fileID: 8300000, guid: ed249e373679d4a11adc0b58a4477f45, type: 3}
+  - {fileID: 8300000, guid: 3cdc6258efb344abbbcae0f01dc9f2ba, type: 3}
+  - {fileID: 8300000, guid: f2882c866e72c4440a6de6d9326f5a79, type: 3}
+  - {fileID: 8300000, guid: 8511e3d9686709c46b09fd6958da605a, type: 3}
 --- !u!1 &1213521008
 GameObject:
   m_ObjectHideFlags: 0
