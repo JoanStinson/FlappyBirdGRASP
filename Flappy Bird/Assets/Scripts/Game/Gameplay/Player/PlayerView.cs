@@ -14,6 +14,7 @@ namespace JGM.Game
         [SerializeField] private Animator m_animator;
         [SerializeField] private Rigidbody2D m_rigidbody2D;
         [SerializeField] private Vector3 m_startingPosition;
+        [SerializeField] private Transform m_trail;
 
         [Header("Commands")]
         [SerializeField] private PlayerCommand m_flapCommand;
@@ -50,6 +51,7 @@ namespace JGM.Game
                 {
                     OnPlayerInputReceived?.Invoke();
                     m_receiveInputFirstTime = true;
+                    m_trail.gameObject.SetActive(true);
                 }
                 m_shouldFlap = true;
                 m_canFlap = true;
@@ -81,6 +83,7 @@ namespace JGM.Game
                 m_animator.Play("PlayerHurt");
                 m_dead = true;
                 m_shouldFlap = false;
+                m_trail.gameObject.SetActive(false);
             }
         }
 
