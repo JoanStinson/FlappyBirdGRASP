@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading.Tasks;
+using UnityEngine;
 
 namespace JGM.Game
 {
@@ -48,8 +50,9 @@ namespace JGM.Game
 #endif
         }
 
-        public void OnPlayerDie()
+        public async void OnPlayerDie()
         {
+            await Task.Delay(TimeSpan.FromSeconds(0.5f));
             m_gameOverView.Show();
         }
 
@@ -57,6 +60,13 @@ namespace JGM.Game
         {
             m_gameOverView.Hide();
             m_gameplayView.Show();
+        }
+
+        public void OnBackButtonClick()
+        {
+            m_gameplayView.Hide();
+            m_gameOverView.Hide();
+            m_mainMenuView.Show();
         }
     }
 }

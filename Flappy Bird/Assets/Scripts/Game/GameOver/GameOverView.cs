@@ -9,7 +9,9 @@ namespace JGM.Game
     {
         [SerializeField] private TextMeshProUGUI m_scoreText;
         [SerializeField] private TextMeshProUGUI m_highScoreText;
+        [SerializeField] private Transform m_newTag;
         [SerializeField] private Button m_restartButton;
+        [SerializeField] private Button m_backButton;
 
         private IPersistenceService m_persistenceService;
         private GameModel m_gameModel;
@@ -21,6 +23,7 @@ namespace JGM.Game
             m_gameModel = gameView.GameModel;
             m_gameModel.HighScore = m_persistenceService.LoadInt("HighScore");
             m_restartButton.onClick.AddListener(OnRestartButtonClick);
+            m_backButton.onClick.AddListener(OnBackButtonClick);
         }
 
         private void OnRestartButtonClick()
@@ -28,16 +31,30 @@ namespace JGM.Game
             m_gameView.OnRestartButtonClick();
         }
 
+        private void OnBackButtonClick()
+        {
+            m_gameView.OnBackButtonClick();
+        }
+
         public override void Show()
         {
             base.Show();
-            if (m_gameModel.Score > m_gameModel.HighScore)
+            
+            bool beatHighScore = (m_gameModel.Score > m_gameModel.HighScore);
+            if (beatHighScore)
             {
-                m_gameModel.HighScore = m_gameModel.Score;
-                m_persistenceService.SaveInt("HighScore", m_gameModel.HighScore);
+                SaveHighScore();
             }
+
+            m_newTag.gameObject.SetActive(beatHighScore);
             m_scoreText.text = m_gameModel.Score.ToString();
             m_highScoreText.text = m_gameModel.HighScore.ToString();
+        }
+
+        private void SaveHighScore()
+        {
+            m_gameModel.HighScore = m_gameModel.Score;
+            m_persistenceService.SaveInt("HighScore", m_gameModel.HighScore);
         }
     }
 }
