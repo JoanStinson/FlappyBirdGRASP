@@ -4,11 +4,12 @@ namespace JGM.Game
 {
     public class FlappyBird : MonoBehaviour
     {
-        [SerializeField] 
-        private GameView m_gameView;
+        [SerializeField] private int m_targetFrameRate = 60;
+        [SerializeField] private GameView m_gameView;
 
         private void Start()
         {
+            Application.targetFrameRate = m_targetFrameRate;
             RunGame();
         }
 
