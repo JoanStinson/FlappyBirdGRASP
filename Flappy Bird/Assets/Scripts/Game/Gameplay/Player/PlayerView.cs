@@ -1,7 +1,4 @@
-using DG.Tweening;
-using JGM.Engine;
 using System;
-using System.Collections;
 using UnityEngine;
 
 namespace JGM.Game
@@ -12,35 +9,32 @@ namespace JGM.Game
         public event Action OnPlayerDie;
         public bool IsDead => m_dead;
 
-        [SerializeField] private Rigidbody2D m_rigidbody2D;
-        [SerializeField] private float m_flapStrength = 5f;
-        [SerializeField] private float m_pitchAngle = 12f;
-        [SerializeField] private float m_rotationSpeed = 6f;
+        [Header("General")]
         [SerializeField] private Animator m_animator;
-        [SerializeField] private Transform m_rightHitEffect;
-        [SerializeField] private Transform m_downHitEffect;
-        [SerializeField] private float m_hitEffectDuration = 0.2f;
-        [SerializeField] private Camera m_mainCamera;
-        [SerializeField] private CoroutineService m_coroutineService;
-        [SerializeField] private Vector3 m_startPosition;
+        [SerializeField] private Rigidbody2D m_rigidbody2D;
+        [SerializeField] private Vector3 m_startingPosition;
+
+        [Header("Commands")]
+        [SerializeField] private PlayerCommand m_flapCommand;
+        [SerializeField] private PlayerCommand m_rotateCommand;
+        [SerializeField] private PlayerCommand m_rightHitEffectCommand;
+        [SerializeField] private PlayerCommand m_downHitEffectCommand;
 
         private bool m_shouldFlap;
         private bool m_canFlap;
         private bool m_dead;
 
-        private void Start()
-        {
-            m_rigidbody2D.isKinematic = true;
-        }
-
         private void Update()
         {
-            if (m_dead)
+            if (!m_dead)
             {
-                return;
+                HandleInput();
             }
+        }
 
-            var playerInput = new PlayerInputBuilder().GetPlayerInput();
+        private void HandleInput()
+        {
+            var playerInput = new PlayerInputBuilder().GetInput();
             if (playerInput.Received())
             {
                 OnPlayerInputReceived?.Invoke();
@@ -59,43 +53,27 @@ namespace JGM.Game
 
             if (m_shouldFlap)
             {
-                Flap();
+                m_flapCommand.Execute();
                 m_shouldFlap = false;
             }
 
-            Rotate();
-        }
-
-        private void Flap()
-        {
-            m_rigidbody2D.velocity = Vector2.zero;
-            m_rigidbody2D.AddForce(Vector2.up * m_flapStrength, ForceMode2D.Impulse);
-        }
-
-        private void Rotate()
-        {
-            float targetAngle = (m_rigidbody2D.velocity.y > 0) ? m_pitchAngle : -m_pitchAngle;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_rotationSpeed * Time.deltaTime);
+            m_rotateCommand.Execute();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.collider.CompareTag("Enemy") || m_dead)
+            if (collision.collider.CompareTag("Enemy") && !m_dead)
             {
-                return;
+                OnPlayerDie?.Invoke();
+                m_animator.Play("PlayerHurt");
+                m_dead = true;
+                m_shouldFlap = false;
             }
-
-            OnPlayerDie?.Invoke();
-            m_animator.Play("PlayerHurt");
-            m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
-            m_dead = true;
-            m_shouldFlap = false;
         }
 
         public void Restart()
         {
-            transform.position = m_startPosition;
+            transform.position = m_startingPosition;
             transform.rotation = Quaternion.identity;
             m_animator.Play("PlayerFly");
             m_dead = false;
@@ -105,19 +83,12 @@ namespace JGM.Game
 
         public void TriggerRightHitEffect()
         {
-            m_coroutineService.RunCoroutine(ShowHitEffect(m_rightHitEffect));
+            m_rightHitEffectCommand.Execute();
         }
 
         public void TriggerDownHitEffect()
         {
-            m_coroutineService.RunCoroutine(ShowHitEffect(m_downHitEffect));
-        }
-
-        private IEnumerator ShowHitEffect(Transform hitEffect)
-        {
-            hitEffect.gameObject.SetActive(true);
-            yield return new WaitForSeconds(m_hitEffectDuration);
-            hitEffect.gameObject.SetActive(false);
+            m_downHitEffectCommand.Execute();
         }
     }
 }

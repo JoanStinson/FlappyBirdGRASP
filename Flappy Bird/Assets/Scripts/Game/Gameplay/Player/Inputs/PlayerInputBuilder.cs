@@ -2,10 +2,10 @@
 {
     public class PlayerInputBuilder
     {
-        public IPlayerInput GetPlayerInput()
+        public IPlayerInput GetInput()
         {
 #if UNITY_EDITOR || UNITY_STANDALONE
-            return new PlayerComputerInput();
+            return new ComputerInput();
 #elif UNITY_IOS || UNITY_ANDROID
             return new PlayerMobileInput();
 #endif

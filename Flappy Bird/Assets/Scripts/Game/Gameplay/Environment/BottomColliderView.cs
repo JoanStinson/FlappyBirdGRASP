@@ -11,5 +11,5 @@ namespace JGM.Game
                 collision.gameObject.GetComponent<PlayerView>().TriggerDownHitEffect();
             }
         }
-    }    
+    }
 }

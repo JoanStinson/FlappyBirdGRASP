@@ -1,4 +1,5 @@
-﻿using JGM.Engine;
+﻿using DG.Tweening;
+using JGM.Engine;
 using UnityEngine;
 
 namespace JGM.Game
@@ -11,6 +12,7 @@ namespace JGM.Game
         [SerializeField] private FloorView m_floorView;
         [SerializeField] private TutorialView m_tutorialView;
         [SerializeField] private AudioService m_audioService;
+        [SerializeField] private Camera m_mainCamera;
 
         private PlayerPrefsAdapter m_persistenceService;
         private int m_highScore;
@@ -58,6 +60,7 @@ namespace JGM.Game
             }
             //m_gameOver.SetScore(m_score.ScoreTotal, m_highScore);
             new HandheldVibrationAdapter().Trigger();
+            m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
         }
 
         public override void Show()

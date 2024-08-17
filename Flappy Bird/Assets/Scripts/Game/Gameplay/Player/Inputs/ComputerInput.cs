@@ -2,7 +2,7 @@
 
 namespace JGM.Game
 {
-    public class PlayerComputerInput : IPlayerInput
+    public class ComputerInput : IPlayerInput
     {
         public bool Received()
         {
