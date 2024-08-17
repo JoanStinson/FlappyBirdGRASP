@@ -6,6 +6,7 @@ namespace JGM.Game
 {
     public class GameplayView : ScreenView
     {
+        [SerializeField] private RectTransform m_gameplayRectTransform;
         [SerializeField] private PipeSpawnerView m_pipeSpawnerView;
         [SerializeField] private ScoreView m_scoreView;
         [SerializeField] private PlayerView m_playerView;
@@ -19,6 +20,7 @@ namespace JGM.Game
         public override void Initialize(GameView gameView)
         {
             base.Initialize(gameView);
+            m_rectTransform = m_gameplayRectTransform;
 
             m_playerView.Initialize(gameView.GameModel);
             m_playerView.OnPlayerInputReceived += OnPlayerInputReceived;
