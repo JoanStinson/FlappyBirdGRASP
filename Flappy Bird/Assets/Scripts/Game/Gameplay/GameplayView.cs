@@ -60,6 +60,13 @@ namespace JGM.Game
             m_pipeSpawnerView.Restart();
             m_scoreView.Hide();
             m_playerView.Restart();
+            m_gameView.GameModel.Score = 0;
+        }
+
+        public override void Hide()
+        {
+            base.Hide();
+            m_scoreView.Hide();
         }
     }
 }

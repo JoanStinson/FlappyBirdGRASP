@@ -5843,7 +5843,7 @@ MonoBehaviour:
   m_floorView: {fileID: 1521902385}
   m_tutorialView: {fileID: 1756103333}
   m_audioService: {fileID: 938394783}
-  m_mainCamera: {fileID: 0}
+  m_mainCamera: {fileID: 519420031}
 --- !u!4 &2081717231
 Transform:
   m_ObjectHideFlags: 0
