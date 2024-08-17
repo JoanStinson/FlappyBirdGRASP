@@ -1,5 +1,5 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "dbe5da14",
     "m_SelectedProcess": {
         "deviceId": "",
         "name": "",
@@ -7,7 +7,26 @@
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownProcessesForSerialization": [],
+    "m_KnownProcessesForSerialization": [
+        {
+            "deviceId": "dbe5da14",
+            "name": "app.olauncher",
+            "processId": 22060,
+            "exited": false
+        },
+        {
+            "deviceId": "dbe5da14",
+            "name": "com.miui.securitycenter",
+            "processId": 19555,
+            "exited": true
+        },
+        {
+            "deviceId": "dbe5da14",
+            "name": "com.miui.securitycenter",
+            "processId": 32690,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {
@@ -45,8 +64,19 @@
         "Height": 0.0
     },
     "m_MemoryViewerState": {
-        "MemoryWindowWidth": 0.0,
-        "MemoryTypeEnabled": [],
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
         "MemoryGroup": 2,
         "AutoCapture": true
     },
