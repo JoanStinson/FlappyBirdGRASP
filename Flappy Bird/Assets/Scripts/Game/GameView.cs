@@ -39,15 +39,24 @@ namespace JGM.Game
             GameModel.UseBot = !GameModel.UseBot;
         }
 
-        public void OnRestartButtonClick()
+        public void OnQuitButtonClick()
         {
-            m_gameOverView.Hide();
-            m_gameplayView.Show();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
 
         public void OnPlayerDie()
         {
             m_gameOverView.Show();
+        }
+
+        public void OnRestartButtonClick()
+        {
+            m_gameOverView.Hide();
+            m_gameplayView.Show();
         }
     }
 }
