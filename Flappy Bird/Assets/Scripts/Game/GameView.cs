@@ -4,12 +4,16 @@ namespace JGM.Game
 {
     public class GameView : MonoBehaviour
     {
+        public GameModel GameModel { get; private set; }
+
         [SerializeField] private ScreenView m_mainMenuView;
         [SerializeField] private ScreenView m_gameplayView;
         [SerializeField] private ScreenView m_gameOverView;
 
         public void Initialize()
         {
+            GameModel = new GameModel();
+
             m_mainMenuView.Initialize(this);
             m_gameplayView.Initialize(this);
             m_gameOverView.Initialize(this);
@@ -32,7 +36,7 @@ namespace JGM.Game
 
         public void OnUseBotButtonClick()
         {
-
+            GameModel.UseBot = !GameModel.UseBot;
         }
 
         public void OnRestartButtonClick()

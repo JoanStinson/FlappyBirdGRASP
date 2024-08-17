@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using JGM.Engine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +11,15 @@ namespace JGM.Game
         [SerializeField] private TextMeshProUGUI m_highScoreText;
         [SerializeField] private Button m_restartButton;
 
+        private IPersistenceService m_persistenceService;
+        private GameModel m_gameModel;
+
         public override void Initialize(GameView gameView)
         {
             base.Initialize(gameView);
+            m_persistenceService = new PlayerPrefsAdapter();
+            m_gameModel = gameView.GameModel;
+            m_gameModel.HighScore = m_persistenceService.LoadInt("HighScore");
             m_restartButton.onClick.AddListener(OnRestartButtonClick);
         }
 
@@ -21,10 +28,16 @@ namespace JGM.Game
             m_gameView.OnRestartButtonClick();
         }
 
-        public void SetScore(int score, int highScore)
+        public override void Show()
         {
-            m_scoreText.text = score.ToString();
-            m_highScoreText.text = highScore.ToString();
+            base.Show();
+            if (m_gameModel.Score > m_gameModel.HighScore)
+            {
+                m_gameModel.HighScore = m_gameModel.Score;
+                m_persistenceService.SaveInt("HighScore", m_gameModel.HighScore);
+            }
+            m_scoreText.text = m_gameModel.Score.ToString();
+            m_highScoreText.text = m_gameModel.HighScore.ToString();
         }
     }
 }

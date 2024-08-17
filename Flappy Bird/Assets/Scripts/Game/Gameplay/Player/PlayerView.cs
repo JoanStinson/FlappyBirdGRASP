@@ -5,9 +5,10 @@ namespace JGM.Game
 {
     public class PlayerView : MonoBehaviour
     {
+        public bool IsDead => m_dead;
+
         public event Action OnPlayerInputReceived;
         public event Action OnPlayerDie;
-        public bool IsDead => m_dead;
 
         [Header("General")]
         [SerializeField] private Animator m_animator;
@@ -20,9 +21,16 @@ namespace JGM.Game
         [SerializeField] private PlayerCommand m_rightHitEffectCommand;
         [SerializeField] private PlayerCommand m_downHitEffectCommand;
 
+        private PlayerInputBuilder m_inputBuilder;
+        private GameModel m_gameModel;
         private bool m_shouldFlap;
         private bool m_canFlap;
         private bool m_dead;
+
+        public void Initialize(GameModel gameModel)
+        {
+            m_gameModel = gameModel;
+        }
 
         private void Update()
         {
@@ -34,8 +42,8 @@ namespace JGM.Game
 
         private void HandleInput()
         {
-            var playerInput = new PlayerInputBuilder().GetInput();
-            if (playerInput.Received())
+            m_inputBuilder ??= new PlayerInputBuilder();
+            if (m_inputBuilder.GetInput(m_gameModel.UseBot).Received())
             {
                 OnPlayerInputReceived?.Invoke();
                 m_shouldFlap = true;

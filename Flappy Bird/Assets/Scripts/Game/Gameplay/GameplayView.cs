@@ -14,30 +14,21 @@ namespace JGM.Game
         [SerializeField] private AudioService m_audioService;
         [SerializeField] private Camera m_mainCamera;
 
-        private PlayerPrefsAdapter m_persistenceService;
-        private int m_highScore;
+        private IVibrationService m_vibrationService;
 
         public override void Initialize(GameView gameView)
         {
             base.Initialize(gameView);
 
-            m_pipeSpawnerView.OnPlayerPassedPipe += OnPlayerPassedPipe;
+            m_playerView.Initialize(gameView.GameModel);
             m_playerView.OnPlayerInputReceived += OnPlayerInputReceived;
             m_playerView.OnPlayerDie += OnPlayerDie;
 
             m_pipeSpawnerView.SpawnPipes();
-            m_scoreView.gameObject.SetActive(false);
+            m_pipeSpawnerView.OnPlayerPassedPipe += OnPlayerPassedPipe;
 
-            m_persistenceService = new PlayerPrefsAdapter();
-            m_highScore = m_persistenceService.LoadInt("HighScore");
             m_audioService.PlayMusic("Background Music");
-        }
-
-        private void OnPlayerPassedPipe()
-        {
-            m_scoreView.gameObject.SetActive(true);
-            m_scoreView.AddScore();
-            m_audioService.PlaySfx("Score");
+            m_vibrationService = new HandheldVibrationAdapter();
         }
 
         private void OnPlayerInputReceived()
@@ -52,15 +43,14 @@ namespace JGM.Game
             m_floorView.StopMoving();
             m_pipeSpawnerView.DisableMovement();
             m_gameView.OnPlayerDie();
-
-            if (m_scoreView.ScoreTotal > m_highScore)
-            {
-                m_highScore = m_scoreView.ScoreTotal;
-                m_persistenceService.SaveInt("HighScore", m_highScore);
-            }
-            //m_gameOver.SetScore(m_score.ScoreTotal, m_highScore);
-            new HandheldVibrationAdapter().Trigger();
+            m_vibrationService.Trigger();
             m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
+        }
+
+        private void OnPlayerPassedPipe()
+        {
+            m_scoreView.Show(++m_gameView.GameModel.Score);
+            m_audioService.PlaySfx("Score");
         }
 
         public override void Show()
@@ -68,9 +58,8 @@ namespace JGM.Game
             base.Show();
             m_tutorialView.Show();
             m_pipeSpawnerView.Restart();
-            m_scoreView.Restart();
+            m_scoreView.Hide();
             m_playerView.Restart();
-            //m_gameOver.gameObject.SetActive(false);
         }
     }
 }

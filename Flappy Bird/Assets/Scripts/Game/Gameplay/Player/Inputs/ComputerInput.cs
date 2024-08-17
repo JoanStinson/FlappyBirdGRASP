@@ -6,8 +6,8 @@ namespace JGM.Game
     {
         public bool Received()
         {
-            return Input.GetMouseButtonDown(0) ||
+            return Input.GetMouseButtonDown(0) || 
                    Input.GetKeyDown(KeyCode.Space);
         }
-    }
+    }    
 }
