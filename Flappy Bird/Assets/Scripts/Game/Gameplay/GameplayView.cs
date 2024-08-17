@@ -36,6 +36,7 @@ namespace JGM.Game
             m_tutorialView.Hide();
             m_floorView.StartMoving();
             m_pipeSpawnerView.EnableMovement();
+            m_scoreView.Show();
         }
 
         private void OnPlayerDie()

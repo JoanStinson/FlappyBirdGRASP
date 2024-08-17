@@ -23,6 +23,7 @@ namespace JGM.Game
 
         private PlayerInputBuilder m_inputBuilder;
         private GameModel m_gameModel;
+        private bool m_receiveInputFirstTime;
         private bool m_shouldFlap;
         private bool m_canFlap;
         private bool m_dead;
@@ -45,7 +46,11 @@ namespace JGM.Game
             m_inputBuilder ??= new PlayerInputBuilder();
             if (m_inputBuilder.GetInput(m_gameModel.UseBot).Received())
             {
-                OnPlayerInputReceived?.Invoke();
+                if (!m_receiveInputFirstTime)
+                {
+                    OnPlayerInputReceived?.Invoke();
+                    m_receiveInputFirstTime = true;
+                }
                 m_shouldFlap = true;
                 m_canFlap = true;
                 m_rigidbody2D.isKinematic = false;
@@ -87,6 +92,7 @@ namespace JGM.Game
             m_dead = false;
             m_canFlap = false;
             m_rigidbody2D.isKinematic = true;
+            m_receiveInputFirstTime = false;
         }
 
         public void TriggerRightHitEffect()
