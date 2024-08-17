@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace JGM.Game
 {
-    public class PipeSpawner : MonoBehaviour
+    public class PipeSpawnerView : MonoBehaviour
     {
         public event Action OnPlayerPassedPipe;
         [field: SerializeField] public Transform LeftScreenLimit { get; private set; }
         [field: SerializeField] public Transform SpawnPosition { get; private set; }
 
         [SerializeField] private Transform m_pipesParent;
-        [SerializeField] private Pipe m_pipePrefab;
+        [SerializeField] private PipeView m_pipePrefab;
 
-        private Pipe m_pipeInstance;
+        private PipeView m_pipeInstance;
 
         public void SpawnPipes()
         {
@@ -21,12 +21,12 @@ namespace JGM.Game
             Return(m_pipeInstance);
         }
 
-        public void Return(Pipe pipe)
+        public void Return(PipeView pipe)
         {
             pipe.transform.position = SpawnPosition.position;
         }
 
-        public void PlayerPassedPipe(Pipe pipe)
+        public void PlayerPassedPipe(PipeView pipe)
         {
             OnPlayerPassedPipe?.Invoke();
         }
@@ -38,12 +38,12 @@ namespace JGM.Game
 
         public void EnableMovement()
         {
-            m_pipeInstance.enabled = true;
+            m_pipeInstance.StartMoving();
         }
 
         public void DisableMovement()
         {
-            m_pipeInstance.enabled = false;
+            m_pipeInstance.StopMoving();
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JGM.Game
 {
-    public class Score : MonoBehaviour
+    public class ScoreView : MonoBehaviour
     {
         public int ScoreTotal => m_score;
         

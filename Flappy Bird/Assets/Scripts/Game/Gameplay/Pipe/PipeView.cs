@@ -2,16 +2,16 @@
 
 namespace JGM.Game
 {
-    public class Pipe : MonoBehaviour
+    public class PipeView : MoverView
     {
-        private PipeSpawner m_pipeSpawner;
+        private PipeSpawnerView m_pipeSpawner;
 
-        public void Initialize(PipeSpawner pipeSpawner)
+        public void Initialize(PipeSpawnerView pipeSpawner)
         {
             m_pipeSpawner = pipeSpawner;
         }
 
-        private void Update()
+        protected override void Move()
         {
             transform.position -= Vector3.right * Time.deltaTime;
 
@@ -23,13 +23,10 @@ namespace JGM.Game
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.TryGetComponent<Player>(out var player) ||
-                player.IsDead)
+            if (collision.TryGetComponent<PlayerView>(out var player) && !player.IsDead)
             {
-                return;
+                m_pipeSpawner.PlayerPassedPipe(this);
             }
-
-            m_pipeSpawner.PlayerPassedPipe(this);
         }
     }
 }

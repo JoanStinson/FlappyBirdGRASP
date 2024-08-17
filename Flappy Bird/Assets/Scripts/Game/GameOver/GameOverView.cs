@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 namespace JGM.Game
 {
-    public class GameOver : MonoBehaviour
+    public class GameOverView : ScreenView
     {
-        public event Action OnRestartButtonClicked;
-
-        [SerializeField] private Button m_restartButton;
         [SerializeField] private TextMeshProUGUI m_scoreText;
         [SerializeField] private TextMeshProUGUI m_highScoreText;
+        [SerializeField] private Button m_restartButton;
 
-        private void Start()
+        public override void Initialize(GameView gameView)
         {
+            base.Initialize(gameView);
             m_restartButton.onClick.AddListener(OnRestartButtonClick);
         }
 
         private void OnRestartButtonClick()
         {
-            OnRestartButtonClicked?.Invoke();
+            m_gameView.OnRestartButtonClick();
         }
 
         public void SetScore(int score, int highScore)

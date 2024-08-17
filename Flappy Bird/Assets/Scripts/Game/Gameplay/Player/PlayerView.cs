@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace JGM.Game
 {
-    public class Player : MonoBehaviour
+    public class PlayerView : MonoBehaviour
     {
         public event Action OnPlayerInputReceived;
         public event Action OnPlayerDie;
@@ -22,15 +22,14 @@ namespace JGM.Game
         [SerializeField] private float m_hitEffectDuration = 0.2f;
         [SerializeField] private Camera m_mainCamera;
         [SerializeField] private CoroutineService m_coroutineService;
+        [SerializeField] private Vector3 m_startPosition;
 
-        private Vector3 m_startPosition;
         private bool m_shouldFlap;
         private bool m_canFlap;
         private bool m_dead;
 
         private void Start()
         {
-            m_startPosition = transform.position;
             m_rigidbody2D.isKinematic = true;
         }
 
