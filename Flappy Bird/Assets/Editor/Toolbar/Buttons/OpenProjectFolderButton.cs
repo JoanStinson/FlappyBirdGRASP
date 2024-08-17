@@ -9,12 +9,11 @@ namespace JGM.Editor
         [ToolbarButton(IconName = "Folder Icon", Tooltip = "Open Project Folder")]
         public static void OnButtonClick()
         {
-            var projectPath = Directory.GetParent(Application.dataPath).FullName;
-
             Process cmd = new Process();
 #if UNITY_EDITOR_WIN
             cmd.StartInfo.FileName = "explorer.exe";
 #endif
+            var projectPath = Directory.GetParent(Application.dataPath).FullName;
             cmd.StartInfo.Arguments = projectPath;
             cmd.Start();
         }
