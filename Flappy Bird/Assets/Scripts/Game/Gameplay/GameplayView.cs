@@ -40,9 +40,9 @@ namespace JGM.Game
 
         private void OnPlayerDie()
         {
+            m_gameView.OnPlayerDie();
             m_floorView.StopMoving();
             m_pipeSpawnerView.DisableMovement();
-            m_gameView.OnPlayerDie();
             m_vibrationService.Trigger();
             m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
         }

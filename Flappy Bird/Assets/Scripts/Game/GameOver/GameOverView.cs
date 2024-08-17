@@ -12,6 +12,8 @@ namespace JGM.Game
         [SerializeField] private Transform m_newTag;
         [SerializeField] private Button m_restartButton;
         [SerializeField] private Button m_backButton;
+        [SerializeField] private Image m_medalSlot;
+        [SerializeField] private Sprite[] m_medals;
 
         private IPersistenceService m_persistenceService;
         private GameModel m_gameModel;
@@ -39,7 +41,7 @@ namespace JGM.Game
         public override void Show()
         {
             base.Show();
-            
+
             bool beatHighScore = (m_gameModel.Score > m_gameModel.HighScore);
             if (beatHighScore)
             {
@@ -49,12 +51,37 @@ namespace JGM.Game
             m_newTag.gameObject.SetActive(beatHighScore);
             m_scoreText.text = m_gameModel.Score.ToString();
             m_highScoreText.text = m_gameModel.HighScore.ToString();
+            ShowMedal();
         }
 
         private void SaveHighScore()
         {
             m_gameModel.HighScore = m_gameModel.Score;
             m_persistenceService.SaveInt("HighScore", m_gameModel.HighScore);
+        }
+
+        private void ShowMedal()
+        {
+            switch (m_gameModel.Score)
+            {
+                case >= 3:
+                    m_medalSlot.sprite = m_medals[2];
+                    break;
+
+                case 2:
+                    m_medalSlot.sprite = m_medals[1];
+                    break;
+
+                case 1:
+                    m_medalSlot.sprite = m_medals[0];
+                    break;
+
+                default:
+                    m_medalSlot.sprite = null;
+                    break;
+            }
+
+            m_medalSlot.gameObject.SetActive(m_medalSlot.sprite != null);
         }
     }
 }
