@@ -18,10 +18,14 @@ namespace JGM.Game
         private IPersistenceService m_persistenceService;
         private GameModel m_gameModel;
 
+        public void Configure(IPersistenceService persistenceService)
+        {
+            m_persistenceService = persistenceService;
+        }
+
         public override void Initialize(GameView gameView)
         {
             base.Initialize(gameView);
-            m_persistenceService = new PlayerPrefsAdapter();
             m_gameModel = gameView.GameModel;
             m_gameModel.HighScore = m_persistenceService.LoadInt("HighScore");
             m_restartButton.onClick.AddListener(OnRestartButtonClick);

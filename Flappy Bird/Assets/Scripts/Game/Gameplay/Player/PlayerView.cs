@@ -1,3 +1,4 @@
+using JGM.Engine;
 using System;
 using UnityEngine;
 
@@ -22,12 +23,18 @@ namespace JGM.Game
         [SerializeField] private PlayerCommand m_rightHitEffectCommand;
         [SerializeField] private PlayerCommand m_downHitEffectCommand;
 
+        private IAudioService m_audioService;
         private PlayerInputBuilder m_inputBuilder;
         private GameModel m_gameModel;
         private bool m_receiveInputFirstTime;
         private bool m_shouldFlap;
         private bool m_canFlap;
         private bool m_dead;
+
+        public void Configure(IAudioService audioService)
+        {
+            m_audioService = audioService;
+        }
 
         public void Initialize(GameModel gameModel)
         {
@@ -53,9 +60,11 @@ namespace JGM.Game
                     m_receiveInputFirstTime = true;
                     m_trail.gameObject.SetActive(true);
                 }
+
                 m_shouldFlap = true;
                 m_canFlap = true;
                 m_rigidbody2D.isKinematic = false;
+                m_audioService.PlaySfx("Flap");
             }
         }
 

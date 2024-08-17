@@ -12,15 +12,22 @@ namespace JGM.Game
         [SerializeField] private PlayerView m_playerView;
         [SerializeField] private FloorView m_floorView;
         [SerializeField] private TutorialView m_tutorialView;
-        [SerializeField] private AudioService m_audioService;
         [SerializeField] private Camera m_mainCamera;
 
+        private IAudioService m_audioService;
         private IVibrationService m_vibrationService;
+
+        public void Configure(IAudioService audioService, IVibrationService vibrationService)
+        {
+            m_audioService = audioService;
+            m_vibrationService = vibrationService;
+        }
 
         public override void Initialize(GameView gameView)
         {
             base.Initialize(gameView);
             m_rectTransform = m_gameplayRectTransform;
+            m_audioService.PlayMusic("Background Music");
 
             m_playerView.Initialize(gameView.GameModel);
             m_playerView.OnPlayerInputReceived += OnPlayerInputReceived;
@@ -28,9 +35,6 @@ namespace JGM.Game
 
             m_pipeSpawnerView.SpawnPipes();
             m_pipeSpawnerView.OnPlayerPassedPipe += OnPlayerPassedPipe;
-
-            m_audioService.PlayMusic("Background Music");
-            m_vibrationService = new HandheldVibrationAdapter();
         }
 
         private void OnPlayerInputReceived()
@@ -48,6 +52,7 @@ namespace JGM.Game
             m_pipeSpawnerView.DisableMovement();
             m_vibrationService.Trigger();
             m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
+            m_audioService.PlaySfx("Hit");
         }
 
         private void OnPlayerPassedPipe()

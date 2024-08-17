@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JGM.Engine;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -11,6 +12,13 @@ namespace JGM.Game
         [SerializeField] private ScreenView m_mainMenuView;
         [SerializeField] private ScreenView m_gameplayView;
         [SerializeField] private ScreenView m_gameOverView;
+        
+        private IAudioService m_audioService;
+
+        public void Configure(IAudioService audioService)
+        {
+            m_audioService = audioService;
+        }
 
         public void Initialize()
         {
@@ -29,16 +37,18 @@ namespace JGM.Game
         {
             m_mainMenuView.Hide();
             m_gameplayView.Show();
+            PlayButtonSfx();
         }
 
         public void OnChangeThemeButtonClick()
         {
-
+            PlayButtonSfx();
         }
 
         public void OnUseBotButtonClick()
         {
             GameModel.UseBot = !GameModel.UseBot;
+            PlayButtonSfx();
         }
 
         public void OnQuitButtonClick()
@@ -54,12 +64,14 @@ namespace JGM.Game
         {
             await Task.Delay(TimeSpan.FromSeconds(0.5f));
             m_gameOverView.Show();
+            m_audioService.PlaySfx("Fall");
         }
 
         public void OnRestartButtonClick()
         {
             m_gameOverView.Hide();
             m_gameplayView.Show();
+            PlayButtonSfx();
         }
 
         public void OnBackButtonClick()
@@ -67,6 +79,12 @@ namespace JGM.Game
             m_gameplayView.Hide();
             m_gameOverView.Hide();
             m_mainMenuView.Show();
+            PlayButtonSfx();
+        }
+
+        private void PlayButtonSfx()
+        {
+            m_audioService.PlaySfx("Button");
         }
     }
 }

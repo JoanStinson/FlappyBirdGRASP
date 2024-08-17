@@ -871,7 +871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618b75215c0abc94cba8db210de162f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_coroutineService: {fileID: 938394782}
   m_hitEffect: {fileID: 1213521009}
   m_hitEffectDuration: 0.2
 --- !u!114 &300520376
@@ -915,7 +914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 618b75215c0abc94cba8db210de162f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_coroutineService: {fileID: 938394782}
   m_hitEffect: {fileID: 447169776}
   m_hitEffectDuration: 0.2
 --- !u!1 &322015039
@@ -2232,6 +2230,7 @@ GameObject:
   - component: {fileID: 938394784}
   - component: {fileID: 938394783}
   - component: {fileID: 938394782}
+  - component: {fileID: 938394785}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -2314,6 +2313,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_mainMenuView: {fileID: 1644254867}
   m_gameplayView: {fileID: 2081717230}
+  m_gameOverView: {fileID: 323289646}
+--- !u!114 &938394785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938394779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7259387aacd20b4d85a7e175ee60e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioServiceInstance: {fileID: 938394783}
+  m_coroutineServiceInstance: {fileID: 938394782}
+  m_gameView: {fileID: 938394784}
+  m_gameplayView: {fileID: 2081717230}
+  m_playerView: {fileID: 300520374}
   m_gameOverView: {fileID: 323289646}
 --- !u!1 &942778261
 GameObject:
@@ -2722,7 +2739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1109011749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6126,7 +6143,6 @@ MonoBehaviour:
   m_playerView: {fileID: 300520374}
   m_floorView: {fileID: 1521902385}
   m_tutorialView: {fileID: 1756103333}
-  m_audioService: {fileID: 938394783}
   m_mainCamera: {fileID: 519420031}
 --- !u!4 &2081717231
 Transform:
