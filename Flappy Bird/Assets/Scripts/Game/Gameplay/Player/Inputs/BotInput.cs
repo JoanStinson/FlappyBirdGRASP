@@ -6,7 +6,9 @@ namespace JGM.Game
     {
         public bool Received()
         {
-            return Random.Range(0, 400) == 0;
+            int range = Random.Range(0, 2);
+            int maxExclusive = (range == 0) ? 20 : 400;
+            return Random.Range(0, maxExclusive) == 0;
         }
     }
 }
