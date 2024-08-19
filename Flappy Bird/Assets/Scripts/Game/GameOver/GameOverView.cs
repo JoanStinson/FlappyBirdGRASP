@@ -11,6 +11,7 @@ namespace JGM.Game
         [SerializeField] private TextMeshProUGUI m_highScoreText;
         [SerializeField] private Transform m_newTag;
         [SerializeField] private Button m_restartButton;
+        [SerializeField] private Button m_changeThemeButton;
         [SerializeField] private Button m_backButton;
         [SerializeField] private Image m_medalSlot;
         [SerializeField] private Sprite[] m_medals;
@@ -29,12 +30,18 @@ namespace JGM.Game
             m_gameModel = gameView.GameModel;
             m_gameModel.HighScore = m_persistenceService.LoadInt("HighScore");
             m_restartButton.onClick.AddListener(OnRestartButtonClick);
+            m_changeThemeButton.onClick.AddListener(OnChangeThemeButtonClick);
             m_backButton.onClick.AddListener(OnBackButtonClick);
         }
 
         private void OnRestartButtonClick()
         {
             m_gameView.OnRestartButtonClick();
+        }
+
+        private void OnChangeThemeButtonClick()
+        {
+            m_gameView.OnChangeThemeButtonClick();
         }
 
         private void OnBackButtonClick()

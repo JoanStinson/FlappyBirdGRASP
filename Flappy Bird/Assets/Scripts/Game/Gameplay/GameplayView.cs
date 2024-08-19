@@ -10,9 +10,10 @@ namespace JGM.Game
         [SerializeField] private PipeSpawnerView m_pipeSpawnerView;
         [SerializeField] private ScoreView m_scoreView;
         [SerializeField] private PlayerView m_playerView;
-        [SerializeField] private FloorView m_floorView;
+        [SerializeField] private EnvironmentView m_environmentView;
         [SerializeField] private TutorialView m_tutorialView;
         [SerializeField] private Camera m_mainCamera;
+        [SerializeField] private Transform m_playTransform;
 
         private IAudioService m_audioService;
         private IVibrationService m_vibrationService;
@@ -27,7 +28,11 @@ namespace JGM.Game
         {
             base.Initialize(gameView);
             m_rectTransform = m_gameplayRectTransform;
+            m_rootGameObject = m_playTransform.gameObject;
+            m_playTransform.gameObject.SetActive(false);
+
             m_audioService.PlayMusic("Background Music");
+            m_environmentView.SetTheme(gameView.GameModel.Theme);
 
             m_playerView.Initialize(gameView.GameModel);
             m_playerView.OnPlayerInputReceived += OnPlayerInputReceived;
@@ -40,7 +45,7 @@ namespace JGM.Game
         private void OnPlayerInputReceived()
         {
             m_tutorialView.Hide();
-            m_floorView.StartMoving();
+            m_environmentView.StartMoving();
             m_pipeSpawnerView.EnableMovement();
             m_scoreView.Show();
         }
@@ -48,7 +53,7 @@ namespace JGM.Game
         private void OnPlayerDie()
         {
             m_gameView.OnPlayerDie();
-            m_floorView.StopMoving();
+            m_environmentView.StopMoving();
             m_pipeSpawnerView.DisableMovement();
             m_vibrationService.Trigger();
             m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
@@ -75,6 +80,11 @@ namespace JGM.Game
         {
             base.Hide();
             m_scoreView.Hide();
+        }
+
+        public void SetTheme(int theme)
+        {
+            m_environmentView.SetTheme(theme);
         }
     }
 }

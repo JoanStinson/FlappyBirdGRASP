@@ -42,6 +42,8 @@ namespace JGM.Game
 
         public void OnChangeThemeButtonClick()
         {
+            GameModel.ChangeTheme();
+            (m_gameplayView as GameplayView).SetTheme(GameModel.Theme);
             PlayButtonSfx();
         }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3723554284324712008}
   - component: {fileID: 4119769430637163978}
   m_Layer: 0
-  m_Name: New Palette
+  m_Name: World 1 Palette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
