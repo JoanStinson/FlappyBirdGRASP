@@ -12,8 +12,9 @@ namespace JGM.Game
         [SerializeField] private ScreenView m_mainMenuView;
         [SerializeField] private ScreenView m_gameplayView;
         [SerializeField] private ScreenView m_gameOverView;
-        
+
         private IAudioService m_audioService;
+        private GameController m_gameController;
 
         public void Configure(IAudioService audioService)
         {
@@ -23,6 +24,7 @@ namespace JGM.Game
         public void Initialize()
         {
             GameModel = new GameModel();
+            m_gameController = new GameController();
 
             m_mainMenuView.Initialize(this);
             m_gameplayView.Initialize(this);
@@ -55,11 +57,7 @@ namespace JGM.Game
 
         public void OnQuitButtonClick()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            m_gameController.Quit();
         }
 
         public async void OnPlayerDie()

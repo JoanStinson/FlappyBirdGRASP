@@ -12,8 +12,8 @@ namespace JGM.Game
         [Header("Dependencies")]
         [SerializeField] private GameView m_gameView;
         [SerializeField] private GameplayView m_gameplayView;
+        [SerializeField] private ScorePanelView m_scorePanelView;
         [SerializeField] private PlayerView m_playerView;
-        [SerializeField] private GameOverView m_gameOverView;
 
         public void Awake()
         {
@@ -24,13 +24,13 @@ namespace JGM.Game
         {
             m_gameView.Configure(m_audioServiceInstance);
             m_gameplayView.Configure(m_audioServiceInstance, new HandheldVibrationAdapter());
+            m_scorePanelView.Configure(new PlayerPrefsAdapter());
             m_playerView.Configure(m_audioServiceInstance);
             var hitEffectCommands = m_playerView.GetComponents<HitEffectCommand>();
             foreach (var hitEffectCommand in hitEffectCommands)
             {
                 hitEffectCommand.Configure(m_coroutineServiceInstance);
             }
-            m_gameOverView.Configure(new PlayerPrefsAdapter());
         }
     }
 }

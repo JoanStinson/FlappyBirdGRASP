@@ -21,7 +21,6 @@ namespace JGM.Game
         public void Initialize()
         {
             SpawnPipes();
-            m_currentPipe = Random.Range(0, m_pipePrefabs.Length);
         }
 
         private void SpawnPipes()
@@ -58,12 +57,13 @@ namespace JGM.Game
             }
         }
 
-        public void EnableMovement()
+        public void StartMoving()
         {
+            m_currentPipe = Random.Range(0, m_pipePrefabs.Length);
             m_pipeInstances[m_currentPipe].StartMoving();
         }
 
-        public void DisableMovement()
+        public void StopMoving()
         {
             m_pipeInstances[m_currentPipe].StopMoving();
         }

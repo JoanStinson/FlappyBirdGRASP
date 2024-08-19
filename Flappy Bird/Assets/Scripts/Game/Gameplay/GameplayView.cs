@@ -6,14 +6,16 @@ namespace JGM.Game
 {
     public class GameplayView : ScreenView
     {
-        [SerializeField] private RectTransform m_gameplayRectTransform;
-        [SerializeField] private PipeSpawnerView m_pipeSpawnerView;
-        [SerializeField] private ScoreView m_scoreView;
+        [Header("General")]
+        [SerializeField] private Transform m_playTransform;
+        [SerializeField] private Camera m_mainCamera;
+
+        [Header("Sub Views")]
         [SerializeField] private PlayerView m_playerView;
         [SerializeField] private EnvironmentView m_environmentView;
+        [SerializeField] private PipeSpawnerView m_pipeSpawnerView;
+        [SerializeField] private ScoreView m_scoreView;
         [SerializeField] private TutorialView m_tutorialView;
-        [SerializeField] private Camera m_mainCamera;
-        [SerializeField] private Transform m_playTransform;
 
         private IAudioService m_audioService;
         private IVibrationService m_vibrationService;
@@ -27,12 +29,6 @@ namespace JGM.Game
         public override void Initialize(GameView gameView)
         {
             base.Initialize(gameView);
-            m_rectTransform = m_gameplayRectTransform;
-            m_rootGameObject = m_playTransform.gameObject;
-            m_playTransform.gameObject.SetActive(false);
-
-            m_audioService.PlayMusic("Background Music");
-            m_environmentView.SetTheme(gameView.GameModel.Theme);
 
             m_playerView.Initialize(gameView.GameModel);
             m_playerView.OnPlayerInputReceived += OnPlayerInputReceived;
@@ -40,24 +36,28 @@ namespace JGM.Game
 
             m_pipeSpawnerView.Initialize();
             m_pipeSpawnerView.OnPlayerPassedPipe += OnPlayerPassedPipe;
+
+            m_environmentView.SetTheme(gameView.GameModel.Theme);
+            m_audioService.PlayMusic("Background Music");
         }
 
         private void OnPlayerInputReceived()
         {
             m_tutorialView.Hide();
-            m_environmentView.StartMoving();
-            m_pipeSpawnerView.EnableMovement();
             m_scoreView.Show();
+            m_environmentView.StartMoving();
+            m_pipeSpawnerView.StartMoving();
         }
 
         private void OnPlayerDie()
         {
-            m_gameView.OnPlayerDie();
+            m_scoreView.Hide();
             m_environmentView.StopMoving();
-            m_pipeSpawnerView.DisableMovement();
-            m_vibrationService.Trigger();
+            m_pipeSpawnerView.StopMoving();
             m_mainCamera.DOShakePosition(0.2f, 0.1f, 1000);
+            m_vibrationService.Trigger();
             m_audioService.PlaySfx("Hit");
+            m_gameView.OnPlayerDie();
         }
 
         private void OnPlayerPassedPipe()
@@ -68,18 +68,17 @@ namespace JGM.Game
 
         public override void Show()
         {
-            base.Show();
-            m_tutorialView.Show();
-            m_pipeSpawnerView.Restart();
-            m_scoreView.Hide();
             m_playerView.Restart();
+            m_tutorialView.Show();
+            m_scoreView.Hide();
+            m_pipeSpawnerView.Restart();
             m_gameView.GameModel.Score = 0;
+            m_playTransform.gameObject.SetActive(true);
         }
 
         public override void Hide()
         {
-            base.Hide();
-            m_scoreView.Hide();
+            m_playTransform.gameObject.SetActive(false);
         }
 
         public void SetTheme(int theme)

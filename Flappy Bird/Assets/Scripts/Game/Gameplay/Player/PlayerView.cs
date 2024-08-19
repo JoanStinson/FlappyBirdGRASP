@@ -100,11 +100,15 @@ namespace JGM.Game
         {
             transform.position = m_startingPosition;
             transform.rotation = Quaternion.identity;
-            m_animator.Play("PlayerFly");
             m_dead = false;
             m_canFlap = false;
             m_rigidbody2D.isKinematic = true;
             m_receiveInputFirstTime = false;
+
+            if (gameObject.transform.parent.gameObject.activeSelf)
+            {
+                m_animator.Play("PlayerFly");
+            }
         }
 
         public void TriggerRightHitEffect()
