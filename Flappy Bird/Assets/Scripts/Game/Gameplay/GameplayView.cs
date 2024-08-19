@@ -38,7 +38,7 @@ namespace JGM.Game
             m_playerView.OnPlayerInputReceived += OnPlayerInputReceived;
             m_playerView.OnPlayerDie += OnPlayerDie;
 
-            m_pipeSpawnerView.SpawnPipes();
+            m_pipeSpawnerView.Initialize();
             m_pipeSpawnerView.OnPlayerPassedPipe += OnPlayerPassedPipe;
         }
 

@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &97597593
 Transform:
   m_ObjectHideFlags: 0
@@ -1551,7 +1551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532919617}
   m_Layer: 0
-  m_Name: Miscellaneous
+  m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1570,8 +1570,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 539433482}
-  - {fileID: 2018527114}
   - {fileID: 329813383}
   - {fileID: 422593216}
   m_Father: {fileID: 97597593}
@@ -1601,11 +1599,11 @@ Transform:
   m_GameObject: {fileID: 539433481}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.99, y: 0, z: 0}
+  m_LocalPosition: {x: -2.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 532919617}
+  m_Father: {fileID: 1575213152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &620061111
 GameObject:
@@ -3385,7 +3383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &962385048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5870,7 +5868,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 539433482}
+  - {fileID: 2018527114}
+  - {fileID: 1688062154}
   m_Father: {fileID: 97597593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1575213153
@@ -5887,8 +5888,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <LeftScreenLimit>k__BackingField: {fileID: 539433482}
   <SpawnPosition>k__BackingField: {fileID: 2018527114}
-  m_pipesParent: {fileID: 1575213152}
-  m_pipePrefab: {fileID: 860989805204838677, guid: f68c841d07cf2af48b872b13803d748b, type: 3}
+  m_pipesParent: {fileID: 1688062154}
+  m_pipePrefabs:
+  - {fileID: 6800383333162360963, guid: d9f45fff153623f449f345472a2ca69a, type: 3}
+  - {fileID: 7093846102125500592, guid: 2af83631de804ea4dacfd5465993c2e3, type: 3}
+  - {fileID: 2645498992286548263, guid: 08f3c5795f0bfdc45911d41a6554d18b, type: 3}
+  - {fileID: 6819113240687390002, guid: 0bb95aef97b261a4ab5418eaee09da1f, type: 3}
+  - {fileID: 4271245405101094156, guid: 889158aa2fe9ef24a83552d190924ea9, type: 3}
 --- !u!1 &1644254865
 GameObject:
   m_ObjectHideFlags: 0
@@ -6254,6 +6260,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674373702}
   m_CullTransparentMesh: 1
+--- !u!1 &1688062153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688062154}
+  m_Layer: 0
+  m_Name: SpawnedPipes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1688062154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688062153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1575213152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708169394
 GameObject:
   m_ObjectHideFlags: 0
@@ -7451,11 +7488,11 @@ Transform:
   m_GameObject: {fileID: 2018527113}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.38, y: 0, z: 0}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 532919617}
+  m_Father: {fileID: 1575213152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2077192846
 GameObject:

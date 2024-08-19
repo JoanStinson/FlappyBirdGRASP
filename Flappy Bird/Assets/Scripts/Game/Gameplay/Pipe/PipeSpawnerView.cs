@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace JGM.Game
 {
@@ -10,20 +11,35 @@ namespace JGM.Game
         [field: SerializeField] public Transform SpawnPosition { get; private set; }
 
         [SerializeField] private Transform m_pipesParent;
-        [SerializeField] private PipeView m_pipePrefab;
+        [SerializeField] private PipeView[] m_pipePrefabs;
 
-        private PipeView m_pipeInstance;
+        private PipeView[] m_pipeInstances;
+        private int m_currentPipe;
 
-        public void SpawnPipes()
+        public void Initialize()
         {
-            m_pipeInstance = GameObject.Instantiate(m_pipePrefab, m_pipesParent, false);
-            m_pipeInstance.Initialize(this);
-            Return(m_pipeInstance);
+            SpawnPipes();
+            m_currentPipe = Random.Range(0, m_pipePrefabs.Length);
+        }
+
+        private void SpawnPipes()
+        {
+            m_pipeInstances = new PipeView[m_pipePrefabs.Length];
+
+            for (int i = 0; i < m_pipePrefabs.Length; i++)
+            {
+                m_pipeInstances[i] = GameObject.Instantiate(m_pipePrefabs[i], m_pipesParent, false);
+                m_pipeInstances[i].Initialize(this);
+                m_pipeInstances[i].transform.position = SpawnPosition.position;
+            }
         }
 
         public void Return(PipeView pipe)
         {
             pipe.transform.position = SpawnPosition.position;
+            pipe.StopMoving();
+            m_currentPipe = Random.Range(0, m_pipePrefabs.Length);
+            m_pipeInstances[m_currentPipe].StartMoving();
         }
 
         public void PlayerPassedPipe(PipeView pipe)
@@ -33,17 +49,21 @@ namespace JGM.Game
 
         public void Restart()
         {
-            Return(m_pipeInstance);
+            foreach (var pipeInstance in m_pipeInstances)
+            {
+                pipeInstance.transform.position = SpawnPosition.position;
+                pipeInstance.StopMoving();
+            }
         }
 
         public void EnableMovement()
         {
-            m_pipeInstance.StartMoving();
+            m_pipeInstances[m_currentPipe].StartMoving();
         }
 
         public void DisableMovement()
         {
-            m_pipeInstance.StopMoving();
+            m_pipeInstances[m_currentPipe].StopMoving();
         }
     }
 }
