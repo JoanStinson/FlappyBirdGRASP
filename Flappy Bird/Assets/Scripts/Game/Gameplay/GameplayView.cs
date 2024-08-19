@@ -85,6 +85,7 @@ namespace JGM.Game
         public void SetTheme(int theme)
         {
             m_environmentView.SetTheme(theme);
+            m_pipeSpawnerView.SetTheme(theme);
         }
     }
 }

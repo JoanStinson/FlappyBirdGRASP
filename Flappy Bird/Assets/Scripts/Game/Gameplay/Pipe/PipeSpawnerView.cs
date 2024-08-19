@@ -12,6 +12,8 @@ namespace JGM.Game
 
         [SerializeField] private Transform m_pipesParent;
         [SerializeField] private PipeView[] m_pipePrefabs;
+        [SerializeField] private Sprite[] m_topSprites;
+        [SerializeField] private Sprite[] m_bottomSprites;
 
         private PipeView[] m_pipeInstances;
         private int m_currentPipe;
@@ -64,6 +66,17 @@ namespace JGM.Game
         public void DisableMovement()
         {
             m_pipeInstances[m_currentPipe].StopMoving();
+        }
+
+        public void SetTheme(int theme)
+        {
+            var topSprite = m_topSprites[theme];
+            var bottomSprite = m_bottomSprites[theme];
+
+            foreach(var pipeInstance in m_pipeInstances)
+            {
+                pipeInstance.SetTheme(topSprite, bottomSprite);
+            }
         }
     }
 }
