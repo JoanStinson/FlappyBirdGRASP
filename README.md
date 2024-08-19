@@ -23,7 +23,7 @@ A Flappy Bird clone game made with Unity applying GRASP.
 </p>
 
 <p align="center">
-  <img src="https://github.com/JoanStinson/TapMatchMVC/blob/main/preview.gif">
+  <img src="https://github.com/JoanStinson/FlappyBirdGRASP/blob/main/preview.gif">
 </p>
 
 ## 📜 Kata Rules
